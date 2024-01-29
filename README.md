@@ -1,2 +1,5 @@
 # FileOrganize
-CLI tool because file organaized.
+
+FileOrganize is CLI tool because file organized.
+
+# Usage
