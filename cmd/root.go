@@ -21,16 +21,20 @@ var rootCmd = &cobra.Command{
 You can organize file by creating directories for each extension.`,
 	Run: func(cmd *cobra.Command, args []string){
 		target, _ := cmd.Flags().GetString("target")
-		if target != "" {
+		if target == "" {
 			fmt.Println("Please specify -t(--target)")
+			return
 		}
 
 		output, _ := cmd.Flags().GetString("output")
-		if output != "" {
+		if output == "" {
 			fmt.Println("Please specify -o(--output)")
+			return
 		}
 
-		err := domain.OrganizeFile(target, output)
+		config, _ := cmd.Flags().GetString("config")
+
+		err := domain.OrganizeFile(target, output, config)
 		if err != nil {
 			fmt.Println(err)
 		}
@@ -49,4 +53,5 @@ func Execute() {
 func init() {
 	rootCmd.Flags().StringP("target", "t", "", "Target Directory.")
 	rootCmd.Flags().StringP("output", "o", "", "Output Directory.")
+	rootCmd.Flags().StringP("config", "c", "", "Specify config json file.")
 }

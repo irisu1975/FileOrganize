@@ -1,0 +1,34 @@
+{
+  "config": [
+    {
+      "dir_name": "動画",
+      "extension": [
+        "mp4",
+        "avi"
+      ]
+    },
+    {
+      "dir_name": "画像",
+      "extension": [
+        "png",
+        "jpeg"
+      ]
+    },
+    {
+      "dir_name": "音楽",
+      "extension": [
+        "mp3",
+        "wav",
+        "ogg"
+      ]
+    },
+    {
+      "dir_name": "書類",
+      "extension": [
+        "docx",
+        "pdf",
+        "pptx"
+      ]
+    }
+  ]
+}
