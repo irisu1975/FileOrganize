@@ -18,7 +18,7 @@ var rootCmd = &cobra.Command{
 	Short: "FileOrganize is organized file.",
 	Long: `FileOrganize is organized file.
 	
-You can organize file by creating directories for each extension.`,
+The FileOrganize command can organize file by creating directories for each extension.`,
 	Run: func(cmd *cobra.Command, args []string){
 		target, _ := cmd.Flags().GetString("target")
 		if target == "" {

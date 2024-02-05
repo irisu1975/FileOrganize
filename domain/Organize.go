@@ -2,9 +2,10 @@ package domain
 
 import (
 	"fmt"
-	"io"
 	"os"
 	"path/filepath"
+
+	"github.com/FileOrganize/utils"
 )
 
 // OrganizeFile organizes file in target directory.
@@ -28,7 +29,7 @@ func OrganizeFile(target string, output string, config string) error {
 			for _, cfg := range configs.Config {
 				for _, cfgExt := range cfg.Extension {
 					if ext[1:] == cfgExt {
-						err := copyFile(filepath.Join(target, file.Name()), filepath.Join(output, cfg.DirName), file.Name())
+						err := utils.CopyFile(filepath.Join(target, file.Name()), filepath.Join(output, cfg.DirName), file.Name())
 						if err != nil {
 							fmt.Println("copyFile:" + err.Error())
 						}
@@ -37,36 +38,11 @@ func OrganizeFile(target string, output string, config string) error {
 				}
 			}
 			if matchFlg == false {
-				copyFile(filepath.Join(target, file.Name()), filepath.Join(output, "Other"), file.Name())
+				utils.CopyFile(filepath.Join(target, file.Name()), filepath.Join(output, "Other"), file.Name())
 			}
 		}else{
-			copyFile(filepath.Join(target, file.Name()), filepath.Join(output, "Other"), file.Name())
+			utils.CopyFile(filepath.Join(target, file.Name()), filepath.Join(output, "Other"), file.Name())
 		}
-	}
-
-	return nil
-}
-
-// makeDirectory make directory.
-func copyFile(file string, target string, fileName string) error {
-	err := os.MkdirAll(target, 0777)
-	if err != nil {
-		return fmt.Errorf("MkdirAll: " + target + ":" + err.Error())
-	}
-
-	newF, err := os.Create(filepath.Join(target, fileName))
-	if err != nil {
-		return fmt.Errorf("OpenFile: " + target + ":" + err.Error())
-	}
-
-	srcF, err := os.Open(file)
-	if err != nil {
-		return fmt.Errorf("Open: " + file + ":" + err.Error())
-	}
-
-	_, err = io.Copy(newF, srcF)
-	if err != nil {
-		return fmt.Errorf("Copy: " + file + ":" + err.Error())
 	}
 
 	return nil
