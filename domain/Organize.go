@@ -13,12 +13,12 @@ func OrganizeFile(target string, output string, config string) error {
 
 	files, err := os.ReadDir(target)
 	if err != nil {
-		return fmt.Errorf(target + ": " + err.Error())
+		return fmt.Errorf("OrganizeFile():" + err.Error())
 	}
 
 	configs, err := ReadConfig(config)
 	if err != nil {
-		return fmt.Errorf(target + ": " + err.Error())
+		return fmt.Errorf("OrganizeFile():" + err.Error())
 	}
 
 	for _, file := range files {
@@ -31,17 +31,24 @@ func OrganizeFile(target string, output string, config string) error {
 					if ext[1:] == cfgExt {
 						err := utils.CopyFile(filepath.Join(target, file.Name()), filepath.Join(output, cfg.DirName), file.Name())
 						if err != nil {
-							fmt.Println("copyFile:" + err.Error())
+							fmt.Println("OrganizeFile():" + err.Error())
 						}
 						matchFlg = true
 					}
 				}
 			}
 			if matchFlg == false {
-				utils.CopyFile(filepath.Join(target, file.Name()), filepath.Join(output, "Other"), file.Name())
+				err := utils.CopyFile(filepath.Join(target, file.Name()), filepath.Join(output, "Other"), file.Name())
+				if err != nil {
+					fmt.Println("OrganizeFile():" + err.Error())
+				}
+
 			}
 		}else{
-			utils.CopyFile(filepath.Join(target, file.Name()), filepath.Join(output, "Other"), file.Name())
+			err := utils.CopyFile(filepath.Join(target, file.Name()), filepath.Join(output, "Other"), file.Name())
+			if err != nil {
+				fmt.Println("OrganizeFile():" + err.Error())
+			}
 		}
 	}
 

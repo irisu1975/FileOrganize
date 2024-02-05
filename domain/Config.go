@@ -20,12 +20,12 @@ func ReadConfig(path string) (Configs, error) {
 	var jsonData Configs
 	jsonFile, err := os.ReadFile(path)
 	if err != nil {
-		return Configs{}, fmt.Errorf("Don't open JSON file: %s", path)
+		return Configs{}, fmt.Errorf("ReadConfig():Don't open JSON file: %s", path)
 	}
 
 	err = json.Unmarshal(jsonFile, &jsonData)
 	if err != nil {
-		return Configs{}, fmt.Errorf("Please specify the correct JSON file.")
+		return Configs{}, fmt.Errorf("ReadConfig():Please specify the correct JSON file.")
 	}
 
 	return jsonData, nil
