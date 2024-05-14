@@ -20,11 +20,11 @@ jobs:
       - name: Extract added yml and image file
         id: added-files
         run: |
-          join(${files}, ${{ github.event.inputs.data1 }})
-          join(${files}, ${{ github.event.inputs.data2 }})
-          join(${files}, ${{ github.event.inputs.data3 }})
-          echo ${files}
-          echo "matrix=${files}" >> $GITHUB_OUTPUT
+          array+=${{ github.event.inputs.data1 }})
+          array+=${{ github.event.inputs.data2 }})
+          array+=${{ github.event.inputs.data3 }})
+          echo ${array}
+          echo "matrix=${array}" >> $GITHUB_OUTPUT
 
   setup-multi-partner:
     needs: setup-partner
