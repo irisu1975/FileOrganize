@@ -1,0 +1,40 @@
+name: test-partner
+
+on:
+  workflow_dispatch:
+    inputs:
+      data1:
+        required: true
+      data2:
+        required: true
+      data3:
+        required: true
+    
+
+jobs:
+  setup-partner:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.matrix.outputs.matrix }}
+    steps:
+      - name: Extract added yml and image file
+        id: added-files
+        run: |
+          $file = ${{ github.event.inputs.data1 }}
+          $file_list+="$file"
+          $file = ${{ github.event.inputs.data2 }}
+          $file_list+="$file"
+          $file = ${{ github.event.inputs.data3 }}
+          $file_list+="$file"
+          echo "matrix=$file_list" >> $GITHUB_OUTPUT
+
+  setup-multi-partner:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        value: ${{ needs.setup-partner.outputs.matrix }}
+    needs: setup-partner
+    steps:
+      - name: Set scripts path
+        id: echo-files
+        run: echo ${{ matrix.value }}
