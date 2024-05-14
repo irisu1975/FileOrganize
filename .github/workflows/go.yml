@@ -20,19 +20,19 @@ jobs:
       - name: Extract added yml and image file
         id: added-files
         run: |
-          files=()
-          files+=("${{ github.event.inputs.data1 }}")
-          files+=("${{ github.event.inputs.data2 }}")
-          files+=("${{ github.event.inputs.data3 }}")
-          echo toJson(${files[@]}）
-          echo "matrix=toJson(${files[@]}）" >> $GITHUB_OUTPUT
+          files=@()
+          files+="${{ github.event.inputs.data1 }}"
+          files+="${{ github.event.inputs.data2 }}"
+          files+="${{ github.event.inputs.data3 }}"
+          echo ${files[@]}
+          echo "matrix=${files}" >> $GITHUB_OUTPUT
 
   setup-multi-partner:
     needs: setup-partner
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        value: ${{ needs.setup-partner.outputs.matrix }}
+        value: ${{ fromJson(needs.setup-partner.outputs.matrix) }}
     steps:
       - name: Set scripts path
         id: echo-files
