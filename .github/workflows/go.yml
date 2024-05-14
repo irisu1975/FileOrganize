@@ -20,6 +20,7 @@ jobs:
       - name: Extract added yml and image file
         id: added-files
         run: |
+          files=()
           files+=("${{ github.event.inputs.data1 }}")
           files+=("${{ github.event.inputs.data2 }}")
           files+=("${{ github.event.inputs.data3 }}")
