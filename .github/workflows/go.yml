@@ -24,7 +24,7 @@ jobs:
           files+=("${{ github.event.inputs.data2 }}")
           files+=("${{ github.event.inputs.data3 }}")
           echo ${files[@]}
-          echo "matrix=${files}" >> $GITHUB_OUTPUT
+          echo "matrix=[\"[${files[1]}, ${files[2]}, ${files[3]}]\"]" >> $GITHUB_OUTPUT
 
   setup-multi-partner:
     needs: setup-partner
