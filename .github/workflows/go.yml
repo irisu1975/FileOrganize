@@ -26,11 +26,11 @@ jobs:
           echo "matrix=${client_name}" >> $GITHUB_OUTPUT
 
   setup-multi-partner:
+    needs: setup-partner
     runs-on: ubuntu-latest
     strategy:
       matrix:
         value: ${{ needs.setup-partner.outputs.matrix }}
-    needs: setup-partner
     steps:
       - name: Set scripts path
         id: echo-files
