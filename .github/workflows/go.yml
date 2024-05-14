@@ -20,9 +20,9 @@ jobs:
       - name: Extract added yml and image file
         id: added-files
         run: |
-          array+=${{ github.event.inputs.data1 }})
-          array+=${{ github.event.inputs.data2 }})
-          array+=${{ github.event.inputs.data3 }})
+          array+=${{ github.event.inputs.data1 }}
+          array+=${{ github.event.inputs.data2 }}
+          array+=${{ github.event.inputs.data3 }}
           echo ${array}
           echo "matrix=${array}" >> $GITHUB_OUTPUT
 
