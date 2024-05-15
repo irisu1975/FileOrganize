@@ -23,7 +23,7 @@ jobs:
           files+=("${{ github.event.inputs.data1 }}")
           files+=("${{ github.event.inputs.data2 }}")
           files+=("${{ github.event.inputs.data3 }}")
-          echo $files
+          echo $files[@]
           IFS=' ' read -r -a file_array << files[@]
           echo $file_array
           output=$(printf '%s\n' "${file_array[@]}" | jq -R . | jq -s .)
