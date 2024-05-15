@@ -26,7 +26,7 @@ jobs:
           echo ${files[@]}
           output=$(printf '%s\n' "${files[@]}" | jq -R . | jq -s -c .)
           echo ${output}
-          echo "matrix=$output" >> $GITHUB_OUTPUT
+          echo "matrix=${output}" >> $GITHUB_OUTPUT
 
   setup-multi-partner:
     needs: setup-partner
