@@ -25,15 +25,15 @@ jobs:
           files+=("${{ github.event.inputs.data3 }}")
           output=$(printf '%s\n' "${files[@]}" | jq -R . | jq -s -c .)
           echo ${output}
-          echo "array-json=${output}" >> $GITHUB_OUTPUT
+          echo "array-json=${output}" >> $GITHUB_ENV
 
   setup-multi-partner:
     needs: set-array
     runs-on: ubuntu-latest
     strategy:
       matrix:
-       value: ${{ fromJson(needs.set-array.outputs.array-json) }}
+        item: ${{ fromJson(needs.set-array.outputs.array-json) }}
     steps:
       - name: Set scripts path
         id: echo-files
-        run: echo ${{ matrix.value }}
+        run: echo ${{ matrix.item }}
