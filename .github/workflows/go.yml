@@ -25,7 +25,8 @@ jobs:
           files+=("${{ github.event.inputs.data3 }}")
           output=$(printf '%s\n' ${files[@]} | jq -R . | jq -s -c .)
           echo ${output}
-          echo "array-json=$output" >> $GITHUB_ENV
+          echo "array-json=$output" >> $GITHUB_OUTPUT
+          echo "::set-output name=arrat-json::$output"
 
   setup-multi-partner:
     needs: set-array
