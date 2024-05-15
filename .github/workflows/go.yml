@@ -23,14 +23,15 @@ jobs:
           files+=("${{ github.event.inputs.data2 }}")
           files+=("${{ github.event.inputs.data3 }}")
           echo ${files[@]}
-          output=$(printf "%s\n" ${files[@]} | jq -R . | jq -s -c .)
+          output=$(printf "%s\n" "${files[@]}" | jq -R . | jq -s -c .)
           echo "matrix=$output">>$GITHUB_OUTPUT
+
   setup-multi-partner:
     needs: set-array
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        item: ${{ needs.set-array.outputs.matrix }}
+        item: ${{ fromJson(needs.set-array.outputs.matrix) }}
     steps:
       - name: Set scripts path
         id: echo-files
