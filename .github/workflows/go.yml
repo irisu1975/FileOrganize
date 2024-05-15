@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        item: ${{ needs.set-array.outputs.matrix }}
+        item: '["dasd","fsds","asdd"]'
     steps:
       - name: Set scripts path
         id: echo-files
