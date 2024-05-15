@@ -35,7 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        item: ${{ setup-multi-partner.needs.set-array.outputs.array-json }}
+        item: ${{ fromJson(needs.set-array.outputs.array-json) }}
     steps:
       - name: Set scripts path
         id: echo-files
