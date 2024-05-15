@@ -24,7 +24,7 @@ jobs:
           files+=("${{ github.event.inputs.data2 }}")
           files+=("${{ github.event.inputs.data3 }}")
           output=$(printf '%s\n' ${files[@]} | jq -R . | jq -s -c .)
-          echo "array-json=$output" >> $GITHUB_OUTPUT
+          echo "array-json=$output">>$GITHUB_OUTPUT
           echo $GITHUB_OUTPUT
 
   setup-multi-partner:
