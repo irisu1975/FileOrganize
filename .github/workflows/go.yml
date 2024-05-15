@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        value: ${{ fromJson(needs.set-array.outputs.array-json) }}
+       value: ${{ fromJson(needs.set-array.outputs.array-json) }}
     steps:
       - name: Set scripts path
         id: echo-files
