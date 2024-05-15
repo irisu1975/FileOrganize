@@ -23,8 +23,8 @@ jobs:
           files+=("${{ github.event.inputs.data1 }}")
           files+=("${{ github.event.inputs.data2 }}")
           files+=("${{ github.event.inputs.data3 }}")
-          echo $(jq -cr '@json' <<< "${{ files }}")
-          echo "matrix=$(jq -cr '@json' <<< "${{ files }}")" >> $GITHUB_OUTPUT
+          echo $(jq -cr '@json' <<< "${ files }")
+          echo "matrix=$(jq -cr '@json' <<< "${ files }")" >> $GITHUB_OUTPUT
 
   setup-multi-partner:
     needs: setup-partner
