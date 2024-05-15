@@ -15,7 +15,7 @@ jobs:
   setup-partner:
     runs-on: ubuntu-latest
     outputs:
-      matrix: ${{ steps.matrix.outputs.matrix }}
+      matrix: ${{ steps.setup-partner.outputs.matrix }}
     steps:
       - name: Extract added yml and image file
         id: added-files
