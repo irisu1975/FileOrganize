@@ -23,7 +23,7 @@ jobs:
           files+=("${{ github.event.inputs.data1 }}")
           files+=("${{ github.event.inputs.data2 }}")
           files+=("${{ github.event.inputs.data3 }}")
-          output=$(printf '%s\n' ${files[@]} | jq -R . | jq -s -c .)
+          output=$(printf %s\n ${files[@]} | jq -R . | jq -s -c .)
           echo $output
           echo "array-json=$output">>$GITHUB_OUTPUT
 
@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        item: '["dasd","fsds","asdd"]'
+        item: ${{ needs.set-array.outputs.matrix }}
     steps:
       - name: Set scripts path
         id: echo-files
