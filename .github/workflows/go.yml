@@ -15,24 +15,24 @@ jobs:
   set-array:
     runs-on: ubuntu-latest
     outputs:
-      matrix: ${{ steps.added-files.outputs.array-json }}
+      matrix: ${{ steps.set-array.outputs.array-json }}
     steps:
       - name: Extract added yml and image file
-        id: added-files
+        id: set-array
         run: |
           files+=("${{ github.event.inputs.data1 }}")
           files+=("${{ github.event.inputs.data2 }}")
           files+=("${{ github.event.inputs.data3 }}")
           output=$(printf '%s\n' ${files[@]} | jq -R . | jq -s -c .)
+          echo $output
           echo "array-json=$output">>$GITHUB_OUTPUT
-          echo $GITHUB_OUTPUT
 
   setup-multi-partner:
     needs: set-array
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        item: ${{ needs.added-files.outputs.matrix }}
+        item: ${{ needs.set-array.outputs.matrix }}
     steps:
       - name: Set scripts path
         id: echo-files
