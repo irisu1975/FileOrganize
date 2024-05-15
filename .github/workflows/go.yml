@@ -23,7 +23,6 @@ jobs:
           files+=("${{ github.event.inputs.data1 }}")
           files+=("${{ github.event.inputs.data2 }}")
           files+=("${{ github.event.inputs.data3 }}")
-          echo ${files[@]}
           output=$(printf '%s\n' "${files[@]}" | jq -R . | jq -s -c .)
           echo ${output}
           echo "matrix=${output}" >> $GITHUB_OUTPUT
@@ -33,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        value: ${{ needs.setup-partner.outputs.matrix }}
+        value: ${{ fromJson(needs.setup-partner.outputs.matrix) }}
     steps:
       - name: Set scripts path
         id: echo-files
