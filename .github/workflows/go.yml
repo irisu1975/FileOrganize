@@ -23,10 +23,10 @@ jobs:
           files+=("${{ github.event.inputs.data1 }}")
           files+=("${{ github.event.inputs.data2 }}")
           files+=("${{ github.event.inputs.data3 }}")
-          output=$(printf "%s\n" ${files[@]} | jq -R . | jq -s -c .)
-          IFS=' ' read -r -a file_array <<< "$files[@]"
+          IFS=' ' read -r -a file_array <<< "$files"
           echo $file_array[@]
-          echo "array-json=$file_array[@]">>$GITHUB_OUTPUT
+          output=$(printf "%s\n" ${file_array[@]} | jq -R . | jq -s -c .)
+          echo "array-json=$output[@]">>$GITHUB_OUTPUT
 
   setup-multi-partner:
     needs: set-array
