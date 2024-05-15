@@ -2,6 +2,13 @@ name: Test Matrix
 
 on:
   workflow_dispatch:
+    inputs:
+      data1:
+        required: false
+      data2:
+        required: false
+      data3:
+        required: false
 
 jobs:
   setup:
