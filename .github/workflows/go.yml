@@ -23,7 +23,7 @@ jobs:
           files+=("${{ github.event.inputs.data1 }}")
           files+=("${{ github.event.inputs.data2 }}")
           files+=("${{ github.event.inputs.data3 }}")
-          output=$(printf "%s\n" "\"${files[@]}\"" | jq -R . | jq -s -c .)
+          output=$(printf "%s" "${files[@]}" | jq -R . | jq -s -c .)
           echo $output
           echo "array-json=$output" >> $GITHUB_OUTPUT
       - name: echo files
