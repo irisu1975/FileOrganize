@@ -35,7 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        item: ${{ needs.set-array.outputs.matrix }}
+        item: ${{ steps.set-array.outputs.array-json }}
     steps:
       - name: Set scripts path
         id: echo-files
