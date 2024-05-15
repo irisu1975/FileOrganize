@@ -26,8 +26,7 @@ jobs:
           output=$(printf "%s\n" ${files[@]} | jq -R . | jq -s -c .)
           echo ${output}
           echo "array-json=$output">>$GITHUB_OUTPUT
-          echo $GITHUB_OUTPUT
-
+          echo ${{steps.set-array.outputs.array-json}}
 
   setup-multi-partner:
     needs: set-array
