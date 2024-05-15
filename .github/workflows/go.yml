@@ -15,7 +15,7 @@ jobs:
   set-array:
     runs-on: ubuntu-latest
     outputs:
-      array-json: ${{ steps.set-array.outputs.array-json }}
+      matrix: ${{ steps.matrix.outputs.array-json }}
     steps:
       - name: Extract added yml and image file
         id: added-files
@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        item: ${{ fromJson(needs.set-array.outputs.array-json) }}
+        item: ${{ fromJson(needs.set-array.outputs.matrix) }}
     steps:
       - name: Set scripts path
         id: echo-files
