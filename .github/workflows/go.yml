@@ -14,7 +14,7 @@ jobs:
   set-array:
     runs-on: ubuntu-latest
     outputs:
-      matrix: ${{ steps.set-array.outputs.array-json }}
+      matrix: ${{ steps.set-array.outputs.matrix }}
     steps:
       - name: Extract added yml and image file
         id: set-array
@@ -24,7 +24,7 @@ jobs:
           files+=("${{ github.event.inputs.data3 }}")
           echo ${files[@]}
           output=$(printf "%s\n" ${files[@]} | jq -R . | jq -s -c .)
-          echo "array-json=$output">>$GITHUB_OUTPUT
+          echo "matrix=$output">>$GITHUB_OUTPUT
   setup-multi-partner:
     needs: set-array
     runs-on: ubuntu-latest
