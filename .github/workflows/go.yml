@@ -28,7 +28,7 @@ jobs:
           echo "array-json=$output" >> $GITHUB_OUTPUT
 
   setup-multi-partner:
-    needs: set-array
+    needs: [ set-array ]
     runs-on: ubuntu-latest
     strategy:
       matrix:
