@@ -25,7 +25,7 @@ jobs:
           files+=("${{ github.event.inputs.data3 }}")
           output=$(printf '%s\n' "${files[@]}" | jq -R . | jq -s -c .)
           echo ${output}
-          echo "matrix=${output}" >> $GITHUB_OUTPUT
+          echo "${output}" >> $GITHUB_OUTPUT
 
   setup-multi-partner:
     needs: set-array
