@@ -24,7 +24,7 @@ jobs:
           file="${{ github.event.inputs.data2 }}"
           files+=($file)
           file="${{ github.event.inputs.data3 }}"
-          $files+=($file)
+          files+=($file)
           echo ${files[@]}
           output=$(printf "%s\n" "${files[@]}" | jq -R . | jq -s -c .)
           echo "matrix=$output">>$GITHUB_OUTPUT
