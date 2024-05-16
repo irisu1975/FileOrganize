@@ -11,7 +11,7 @@ on:
         required: true
     
 jobs:
-  set-array:
+  set-up:
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.set-array.outputs.matrix }}
