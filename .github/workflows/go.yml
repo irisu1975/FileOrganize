@@ -30,11 +30,11 @@ jobs:
           echo "matrix=$output">>$GITHUB_OUTPUT
 
   setup-multi-partner:
-    needs: set-array
+    needs: set-up
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        item: ${{ fromJson(needs.set-array.outputs.matrix) }}
+        item: ${{ fromJson(needs.set-up.outputs.matrix) }}
     steps:
       - name: Set scripts path
         id: echo-files
