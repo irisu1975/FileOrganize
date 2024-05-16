@@ -19,9 +19,12 @@ jobs:
       - name: Extract added yml and image file
         id: set-array
         run: |
-          files+=("${{ github.event.inputs.data1 }}")
-          files+=("${{ github.event.inputs.data2 }}")
-          files+=("${{ github.event.inputs.data3 }}")
+          file="${{ github.event.inputs.data1 }}"
+          files+=($file)
+          file="${{ github.event.inputs.data2 }}"
+          files+=($file)
+          file="${{ github.event.inputs.data3 }}"
+          files+=($file)
           echo ${files[@]}
           output=$(printf "%s\n" "${files[@]}" | jq -R . | jq -s -c .)
           echo "matrix=$output">>$GITHUB_OUTPUT
