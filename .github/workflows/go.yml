@@ -31,4 +31,7 @@ jobs:
       - name: echo files
         id: echo-array
         run: |
-          echo ${{ steps.set-array.outputs.matrix }}
+          for i in ${{ steps.set-array.outputs.matrix }}
+          do
+            echo "$1\n"
+          done
