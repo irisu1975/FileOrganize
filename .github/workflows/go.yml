@@ -31,4 +31,4 @@ jobs:
       - name: echo files
         id: echo-array
         run: |
-          echo teps.set-array.outputs.matrix
+          echo ${{ teps.set-array.outputs.matrix }}
