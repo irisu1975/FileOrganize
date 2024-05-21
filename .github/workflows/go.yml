@@ -27,7 +27,7 @@ jobs:
           files+=($file)
           echo ${files[@]}
           output=$(printf "%s\n" "${files[@]}" | jq -R . | jq -s -c .)
-          echo "matrix=$output">>$GITHUB_OUTPUT
+          echo "matrix=${files[@]}">>$GITHUB_OUTPUT
       - name: echo files
         id: echo-array
         run: |
