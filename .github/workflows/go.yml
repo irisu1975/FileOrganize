@@ -28,14 +28,7 @@ jobs:
           echo ${files[@]}
           output=$(printf "%s\n" "${files[@]}" | jq -R . | jq -s -c .)
           echo "matrix=$output">>$GITHUB_OUTPUT
-
-  setup-multi-partner:
-    needs: set-up
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        item: ${{ fromJson(needs.set-up.outputs.matrix) }}
-    steps:
-      - name: Set scripts path
-        id: echo-files
-        run: echo ${{ matrix.item }}
+      - name: echo files
+        id: echo-array
+        run: |
+          echo teps.set-array.outputs.matrix
