@@ -27,11 +27,11 @@ jobs:
           files+=($file)
           echo ${files[@]}
           output=$(printf "%s\n" "${files[@]}" | jq -R . | jq -s -c .)
-          echo "matrix=$files[@]">>$GITHUB_OUTPUT
+          echo "matrix=$output">>$GITHUB_OUTPUT
       - name: echo files
         id: echo-array
         run: |
           for i in ${{ steps.set-array.outputs.matrix }}
           do
-            echo "$1\n"
+            echo "$i\n"
           done
