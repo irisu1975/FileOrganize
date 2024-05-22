@@ -30,12 +30,12 @@ jobs:
       - name: echo files
         id: echo-array
         run: |
-          file_path = (${{ steps.set-array.outputs.matrix }})
+          file_path=(${{ steps.set-array.outputs.matrix }})
           for i in ${{ steps.set-array.outputs.matrix }}
           do
             echo "$i\n"
           done
-          file_path = ${{ steps.set-array.outputs.matrix }}
+          file_path=${{ steps.set-array.outputs.matrix }}
           for i in ${{ steps.set-array.outputs.matrix }}
           do
             echo "$i\n"
