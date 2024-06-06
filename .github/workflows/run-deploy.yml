@@ -37,5 +37,5 @@ jobs:
     if: github.ref_name == 'main'
     uses: ./.github/workflows/go.yml  # Specify the reusable workflow
     with:
-      to: ${{ needs.run-deploy.steps.calculate-from-time.outputs.to_time }}
-      from: ${{ needs.run-deploy.steps.calculate-from-time.outputs.from_time }}
+      to: ${{needs.run-deploy.outputs.to_time }}
+      from: ${{ needs.run-deploy.outputs.from_time }}
