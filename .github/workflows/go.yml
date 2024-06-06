@@ -3,40 +3,17 @@ name: test-partner
 on:
   workflow_dispatch:
     inputs:
-      data1:
+      to:
         required: true
-      data2:
-        required: true
-      data3:
+      from:
         required: true
     
 jobs:
   set-up:
     runs-on: ubuntu-latest
-    outputs:
-      matrix: ${{ steps.set-array.outputs.matrix }}
     steps:
       - name: Extract added yml and image file
         id: set-array
         run: |
-          file="${{ github.event.inputs.data1 }}"
-          files+=($file)
-          file="${{ github.event.inputs.data2 }}"
-          files+=($file)
-          file="${{ github.event.inputs.data3 }}"
-          files+=($file)
-          echo ${files[@]}
-          echo "matrix=${files[@]}">>$GITHUB_OUTPUT
-      - name: echo files
-        id: echo-array
-        run: |
-          file_path=(${{ steps.set-array.outputs.matrix }})
-          for i in ${{ steps.set-array.outputs.matrix }}
-          do
-            echo "$i\n"
-          done
-          file_path=${{ steps.set-array.outputs.matrix }}
-          for i in ${{ steps.set-array.outputs.matrix }}
-          do
-            echo "$i\n"
-          done
+          echo "input to:" + ${{ github.event.inputs.to }}
+          echo "input from:" + ${{ github.event.inputs.from }}
