@@ -12,6 +12,9 @@ jobs:
     name: run-deploy
     runs-on: ubuntu-latest
     steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
       - name: Detect pushed branch
         run: echo "Pushed to branch ${{ github.ref_name }}"
       
