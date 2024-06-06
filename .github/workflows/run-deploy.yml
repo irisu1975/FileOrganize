@@ -26,10 +26,10 @@ jobs:
         run: |
           echo ${{ steps.calculate-from-time.outputs.to_time }}
           echo ${{ steps.calculate-from-time.outputs.from_time }}
-          ecbo ${{ github.ref_name }}
+          echo ${{ github.ref_name }}
 
       - name: run payout console query sunc
-        if: github.ref_name == 'refs/heads/main'
+        if: github.ref_name == 'main'
         uses: ./.github/workflows/go
         with: 
           to: ${{ steps.calculate-from-time.outputs.to_time }}
