@@ -33,8 +33,9 @@ jobs:
           pwd
           
   call-workflow:
-      if: github.ref_name == 'main'
-      uses: ./.github/workflows/go.yml  # Specify the reusable workflow
-      with:
-        to: ${{ steps.calculate-from-time.outputs.to_time }}
-        from: ${{ steps.calculate-from-time.outputs.from_time }}
+    needs: [run-deploy]
+    if: github.ref_name == 'main'
+    uses: ./.github/workflows/go.yml  # Specify the reusable workflow
+    with:
+      to: ${{ steps.calculate-from-time.outputs.to_time }}
+      from: ${{ steps.calculate-from-time.outputs.from_time }}
