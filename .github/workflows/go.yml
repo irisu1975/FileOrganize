@@ -1,4 +1,3 @@
-# .github/workflows/go.yml
 name: Go Action
 
 on:
@@ -18,5 +17,5 @@ jobs:
       - name: Extract added yml and image file
         id: set-array
         run: |
-          echo "input to:" + ${{ github.event.inputs.to }}
-          echo "input from:" + ${{ github.event.inputs.from }}
+          echo "input to: ${{ inputs.to }}"
+          echo "input from: ${{ inputs.from }}"
