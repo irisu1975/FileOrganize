@@ -14,7 +14,7 @@ jobs:
     outputs:
       to_time: ${{ steps.calculate-from-time.outputs.to_time }}
       from_time: ${{ steps.calculate-from-time.outputs.from_time }}
-      github_ref_name: ${{ steps.detect-branch.outputs.branch }}
+      github_ref_name: ${{ steps.calculate-from-time.outputs.branch }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
