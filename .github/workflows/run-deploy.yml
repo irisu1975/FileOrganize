@@ -33,7 +33,7 @@ jobs:
 
       - name: run payout console query sunc
         if: github.ref_name == 'main'
-        uses: ./.github/workflows/go
+        uses: ./.github/workflows/go.yml
         with: 
           to: ${{ steps.calculate-from-time.outputs.to_time }}
           from: ${{ steps.calculate-from-time.outputs.from_time }}
