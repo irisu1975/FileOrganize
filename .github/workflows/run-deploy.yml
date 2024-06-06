@@ -1,0 +1,29 @@
+name: run-deploy
+
+on:
+  push:
+    branches:
+      - main
+      - development
+  workflow_dispatch:
+
+jobs:
+  run-deploy:
+    name: run-deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Detect pushed branch
+        run: echo "Pushed to branch ${{ github.ref_name }}"
+      
+      - name: Calculate from time
+        id: calculate-from-time
+        run: |
+          echo "to_time=$(TZ=Asia/Tokyo date -d '30 minutes' '+%Y-%m-%dT%H:%M:%S%z')" >> $GITHUB_OUTPUT
+          echo "from_time=$(TZ=Asia/Tokyo date -d '30 minutes ago' '+%Y-%m-%dT%H:%M:%S%z')" >> $GITHUB_OUTPUT
+
+      - name: run payout console query sunc
+        if: github.ref_name == 'refs/heads/main'
+        uses: ./.github/workflows/go
+        with: 
+          to: ${{ steps.calculate-from-time.outputs.to_time }}
+          from: ${{ steps.calculate-from-time.outputs.from_time }}
