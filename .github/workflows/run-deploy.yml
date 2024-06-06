@@ -11,6 +11,10 @@ jobs:
   run-deploy:
     name: run-deploy
     runs-on: ubuntu-latest
+    outputs:
+      to_time: ${{ steps.calculate-from-time.outputs.to_time }}
+      from_time: ${{ steps.calculate-from-time.outputs.from_time }}
+      github_ref_name: ${{ steps.detect-branch.outputs.branch }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
@@ -23,6 +27,7 @@ jobs:
         run: |
           echo "to_time=$(TZ=Asia/Tokyo date -d '30 minutes' '+%Y-%m-%dT%H:%M:%S%z')" >> $GITHUB_OUTPUT
           echo "from_time=$(TZ=Asia/Tokyo date -d '30 minutes ago' '+%Y-%m-%dT%H:%M:%S%z')" >> $GITHUB_OUTPUT
+          echo "branch=${{ github.ref_name }}" >> $GITHUB_OUTPUT
 
       - name: Echo time
         id: echo-time
@@ -34,7 +39,7 @@ jobs:
           
   call-workflow:
     needs: [run-deploy]
-    if: github.ref_name == 'main'
+    if: needs.run-deploy.outputs.github_ref_name == 'main'
     uses: ./.github/workflows/go.yml  # Specify the reusable workflow
     with:
       to: ${{needs.run-deploy.outputs.to_time }}
