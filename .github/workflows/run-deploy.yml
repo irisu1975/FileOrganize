@@ -31,9 +31,9 @@ jobs:
           echo ${{ steps.calculate-from-time.outputs.from_time }}
           echo ${{ github.ref_name }}
 
-      - name: run payout console query sunc
+      - name: Run payout console query
         if: github.ref_name == 'main'
-        uses: .github/workflows/go.yml@main
-        with: 
+        uses: ./.github/workflows/go.yml@main  # Specify the reusable workflow
+        with:
           to: ${{ steps.calculate-from-time.outputs.to_time }}
           from: ${{ steps.calculate-from-time.outputs.from_time }}
