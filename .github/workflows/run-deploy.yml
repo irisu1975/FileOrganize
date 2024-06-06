@@ -21,6 +21,13 @@ jobs:
           echo "to_time=$(TZ=Asia/Tokyo date -d '30 minutes' '+%Y-%m-%dT%H:%M:%S%z')" >> $GITHUB_OUTPUT
           echo "from_time=$(TZ=Asia/Tokyo date -d '30 minutes ago' '+%Y-%m-%dT%H:%M:%S%z')" >> $GITHUB_OUTPUT
 
+      - name: Echo time
+        id: echo-time
+        run: |
+          echo ${{ steps.calculate-from-time.outputs.to_time }}
+          echo ${{ steps.calculate-from-time.outputs.from_time }}
+          ecbo ${{ github.ref_name }}
+
       - name: run payout console query sunc
         if: github.ref_name == 'refs/heads/main'
         uses: ./.github/workflows/go
