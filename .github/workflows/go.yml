@@ -19,4 +19,4 @@ jobs:
         run: |
           echo "input to: ${{ inputs.to }}"
           echo "input from: ${{ inputs.from }}"
-          echo "input secret: ${{ secret.AWS_REAGION }}"
+          echo "input secret: ${{ secrets.AWS_REAGION }}"
