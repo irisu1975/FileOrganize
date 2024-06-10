@@ -36,6 +36,7 @@ jobs:
           echo ${{ steps.calculate-from-time.outputs.to_time }}
           echo ${{ steps.calculate-from-time.outputs.from_time }}
           echo ${{ github.ref_name }}
+          echo "input secret: ${{ secrets.AWS_REAGION }}"
           pwd
           
   call-workflow:
