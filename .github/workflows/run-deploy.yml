@@ -45,4 +45,3 @@ jobs:
     with:
       to: ${{needs.run-deploy.outputs.to_time }}
       from: ${{ needs.run-deploy.outputs.from_time }}
-      sec: ${{ secrets.AWS_REAGION }}
