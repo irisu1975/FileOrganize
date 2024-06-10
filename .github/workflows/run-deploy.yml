@@ -42,6 +42,7 @@ jobs:
     needs: [run-deploy]
     if: needs.run-deploy.outputs.github_ref_name == 'main'
     uses: ./.github/workflows/go.yml  # Specify the reusable workflow
+    secrets: inherit
     with:
       to: ${{needs.run-deploy.outputs.to_time }}
       from: ${{ needs.run-deploy.outputs.from_time }}
