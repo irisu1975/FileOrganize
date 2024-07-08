@@ -1,0 +1,27 @@
+name: Download PDF from API
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'URL of the PDF to download'
+        required: true
+        default: 'https://example.com/sample.pdf'
+
+jobs:
+  download_pdf:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Call API and download PDF
+      run: |
+        curl -L -o output.pdf "${{ github.event.inputs.url }}"
+
+    - name: Upload PDF to repository
+      uses: actions/upload-artifact@v2
+      with:
+        name: downloaded-pdf
+        path: output.pdf
