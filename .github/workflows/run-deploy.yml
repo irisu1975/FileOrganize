@@ -3,8 +3,7 @@ name: run-deploy
 on:
   push:
     paths:
-      - '.github/workflows/go.yml'
-      - '.github/workflows/run-deploy.yml'
+      - '.github/workflows/scripts/main.go'
     branches:
       - main
       - development
