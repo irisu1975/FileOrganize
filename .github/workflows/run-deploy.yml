@@ -2,11 +2,12 @@ name: run-deploy
 
 on:
   push:
+    paths:
+      - '.github/workflows/go.yml'
     branches:
       - main
       - development
       - exp
-  workflow_dispatch:
 
 jobs:
   run-deploy:
