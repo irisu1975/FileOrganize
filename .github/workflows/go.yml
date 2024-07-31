@@ -1,17 +1,42 @@
-name: Go Action
+name: test-partner
 
 on:
-  pull_request:
-    paths:
-      - '.github/workflows/*.yml'
-    branches:
-      - main
+  workflow_dispatch:
+    inputs:
+      data1:
+        required: true
+      data2:
+        required: true
+      data3:
+        required: true
     
 jobs:
   set-up:
     runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-array.outputs.matrix }}
     steps:
       - name: Extract added yml and image file
         id: set-array
         run: |
-          echo "input to"
+          file="${{ github.event.inputs.data1 }}"
+          files+=($file)
+          file="${{ github.event.inputs.data2 }}"
+          files+=($file)
+          file="${{ github.event.inputs.data3 }}"
+          files+=($file)
+          echo ${files[@]}
+          output=$(printf "%s\n" "${files[@]}" | jq -R . | jq -s -c .)
+          echo "matrix=${files[@]}">>$GITHUB_OUTPUT
+          echo "YML_FILE_PATHS=${files[@]}" >> $GITHUB_OUTPUT
+      - name: echo files
+        id: echo-array
+        run: |
+          for i in ${{ steps.set-array.outputs.matrix }}
+          do
+            echo "$i\n"
+          done
+          for i in ${{ steps.set-array.outputs.YML_FILE_PATHS }}
+          do
+            echo "$i\n"
+          done
