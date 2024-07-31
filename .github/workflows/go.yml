@@ -1,14 +1,11 @@
 name: Go Action
 
 on:
-  workflow_call:
-    inputs:
-      to:
-        required: true
-        type: string
-      from:
-        required: true
-        type: string
+  pull_request:
+    paths:
+      - '.github/workflows/go.yml'
+    branches:
+      - main
     
 jobs:
   set-up:
@@ -17,6 +14,4 @@ jobs:
       - name: Extract added yml and image file
         id: set-array
         run: |
-          echo "input to: ${{ inputs.to }}"
-          echo "input from: ${{ inputs.from }}"
-          echo "input secret: ${{ secrets.GITHUB_TOKEN }}"
+          echo "input to"
