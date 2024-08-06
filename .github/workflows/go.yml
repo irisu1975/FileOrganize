@@ -22,7 +22,7 @@ jobs:
           echo "::notice ::data1=${{ github.event.inputs.data1 }}"
           echo "::notice ::data2=${{ github.event.inputs.data2 }}"
           echo "::notice ::data3=${{ github.event.inputs.data3 }}" 
-          echo "::notice title=Multi-line Notice::data1=${{ github.event.inputs.data1 }}%0Adata2=${{ github.event.inputs.data2 }}%0Adata3=${{ github.event.inputs.data3 }}"
+          echo "::notice title=Multi-line Notice::data1=${{ github.event.inputs.data1 }} | data2=${{ github.event.inputs.data2 }} | data3=${{ github.event.inputs.data3 }}"
           file="${{ github.event.inputs.data1 }}"
           files+=($file)
           file="${{ github.event.inputs.data2 }}"
