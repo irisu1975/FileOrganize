@@ -19,14 +19,13 @@ jobs:
       - name: Extract added yml and image file
         id: set-array
         run: |
-          echo "::notice data1=${{ github.event.inputs.data1 }}::Missing semicolon"
-          echo "::notice data2=${{ github.event.inputs.data2 }}::Missing semicolon"
-          echo "::notice data3=${{ github.event.inputs.data3 }}::Missing semicolon"
+          echo "::notice ::data1=${{ github.event.inputs.data1 }}"
+          echo "::notice ::data2=${{ github.event.inputs.data2 }}"
+          echo "::notice ::data3=${{ github.event.inputs.data3 }}"
           echo "::notice \
-          data1=${{ github.event.inputs.data1 }}\n \
+          ::data1=${{ github.event.inputs.data1 }}\n \
           data2=${{ github.event.inputs.data2 }}\n \
-          data3=${{ github.event.inputs.data3 }}\n \
-          ::Missing semicolon"
+          data3=${{ github.event.inputs.data3 }}\n"
           file="${{ github.event.inputs.data1 }}"
           files+=($file)
           file="${{ github.event.inputs.data2 }}"
