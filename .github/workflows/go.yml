@@ -19,6 +19,9 @@ jobs:
       - name: Extract added yml and image file
         id: set-array
         run: |
+          echo "::notice data1: ${{ github.event.inputs.data1 }}"
+          echo "::notice data2: ${{ github.event.inputs.data2 }}"
+          echo "::notice data3: ${{ github.event.inputs.data3 }}"
           file="${{ github.event.inputs.data1 }}"
           files+=($file)
           file="${{ github.event.inputs.data2 }}"
@@ -40,3 +43,18 @@ jobs:
           do
             echo "$i\n"
           done
+  wait:
+    runs-on: ubuntu-latest
+    needs: set-up
+    steps:
+    - name: Manual trigger needed
+      run: echo "Please manually trigger the next job when ready."
+  Loggin:
+    runs-on: ubuntu-latest
+    needs: wait
+    steps:
+    - name: watch loggin
+    - run: |
+        echo "::notice data1: ${{ github.event.inputs.data1 }}"
+        echo "::notice data2: ${{ github.event.inputs.data2 }}"
+        echo "::notice data3: ${{ github.event.inputs.data3 }}"
